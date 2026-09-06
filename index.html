@@ -1,365 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Hidden Spoon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>The Hidden Spoon</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f4ed;
-            color: #222;
-            min-height: 100vh;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .app {
-            max-width: 500px;
-            margin: auto;
-            min-height: 100vh;
-            background: white;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #eef2f7;
+    color: #172033;
+}
 
-        header {
-            background: #1f2937;
-            color: white;
-            padding: 35px 25px;
-            text-align: center;
-        }
+.app {
+    max-width: 520px;
+    margin: auto;
+    min-height: 100vh;
+    background: white;
+}
 
-        .spoon {
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
+.hero {
+    background: linear-gradient(145deg, #172554, #2563eb);
+    color: white;
+    padding: 42px 24px 38px;
+    text-align: center;
+    border-radius: 0 0 32px 32px;
+}
 
-        h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
+.spoon {
+    font-size: 58px;
+    margin-bottom: 12px;
+}
 
-        .tagline {
-            font-size: 16px;
-            line-height: 1.5;
-        }
+.hero h1 {
+    font-size: 34px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
 
-        .creator {
-            margin-top: 15px;
-            font-size: 14px;
-            opacity: 0.85;
-        }
+.hero p {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: .92;
+}
 
-        .content {
-            padding: 25px 20px;
-        }
+.creator {
+    margin-top: 18px;
+    font-size: 13px !important;
+    opacity: .8 !important;
+}
 
-        .card {
-            border-radius: 18px;
-            padding: 22px;
-            margin-bottom: 16px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            border: 1px solid #ddd;
-        }
+.content {
+    padding: 24px 20px;
+}
 
-        .card:hover {
-            transform: translateY(-3px);
-        }
+.intro {
+    text-align: center;
+    margin-bottom: 22px;
+}
 
-        .salt {
-            background: #eef5ff;
-        }
+.intro h2 {
+    font-size: 21px;
+    margin-bottom: 7px;
+}
 
-        .sugar {
-            background: #fff0f5;
-        }
+.intro p {
+    color: #64748b;
+    line-height: 1.5;
+}
 
-        .game {
-            background: #fff8df;
-        }
+.card {
+    padding: 22px;
+    border-radius: 22px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+    transition: .2s;
+}
 
-        .quiz {
-            background: #eefbea;
-        }
+.card:active {
+    transform: scale(.98);
+}
 
-        .card-icon {
-            font-size: 35px;
-            margin-bottom: 10px;
-        }
+.card-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
 
-        .card h2 {
-            font-size: 21px;
-            margin-bottom: 7px;
-        }
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
 
-        .card p {
-            color: #555;
-            line-height: 1.5;
-        }
+.card p {
+    color: #64748b;
+    line-height: 1.45;
+}
 
-        button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            background: #1f2937;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+.salt {
+    background: #eff6ff;
+}
 
-        button:hover {
-            opacity: 0.9;
-        }
+.sugar {
+    background: #fff1f2;
+}
 
-        .screen {
-            display: none;
-        }
+.game {
+    background: #fffbeb;
+}
 
-        .screen.active {
-            display: block;
-        }
+.quiz {
+    background: #f0fdf4;
+}
 
-        .back {
-            background: #e5e7eb;
-            color: #222;
-            margin-bottom: 20px;
-        }
+.learn {
+    background: #f5f3ff;
+}
 
-        .fact {
-            padding: 18px;
-            border-radius: 15px;
-            background: #f5f5f5;
-            margin: 15px 0;
-            line-height: 1.6;
-        }
+.screen {
+    display: none;
+}
 
-        .question {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 20px 0;
-            line-height: 1.4;
-        }
+.screen.active {
+    display: block;
+}
 
-        .answer {
-            background: #f3f4f6;
-            color: #222;
-            border: 1px solid #ddd;
-        }
+.back {
+    border: none;
+    background: #eef2f7;
+    padding: 11px 16px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    font-size: 15px;
+    cursor: pointer;
+}
 
-        #result {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
+.screen h1 {
+    font-size: 29px;
+    margin-bottom: 18px;
+}
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #777;
-            font-size: 13px;
-        }
-    </style>
+.fact {
+    background: #f8fafc;
+    padding: 19px;
+    border-radius: 17px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+    border: 1px solid #e5e7eb;
+}
+
+.fact strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.question {
+    font-size: 20px;
+    line-height: 1.45;
+    font-weight: 700;
+    margin: 22px 0;
+}
+
+.answer {
+    width: 100%;
+    border: 1px solid #dbe2ea;
+    background: white;
+    color: #172033;
+    padding: 16px;
+    border-radius: 15px;
+    margin-bottom: 11px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.answer:active {
+    transform: scale(.98);
+}
+
+.result {
+    margin-top: 15px;
+    padding: 20px;
+    border-radius: 17px;
+    background: #ecfdf5;
+    line-height: 1.55;
+    display: none;
+}
+
+.spoon-row {
+    font-size: 28px;
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+.score {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 18px;
+}
+
+footer {
+    text-align: center;
+    color: #94a3b8;
+    padding: 20px;
+    font-size: 13px;
+}
+
+.highlight {
+    color: #2563eb;
+    font-weight: 700;
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-    <!-- HOME -->
-    <div id="home" class="screen active">
+<!-- HOME -->
+<div id="home" class="screen active">
 
-        <header>
-            <div class="spoon">🥄</div>
-            <h1>THE HIDDEN SPOON</h1>
-            <p class="tagline">
-                Discover the salt & sugar hiding in everyday food.
+    <div class="hero">
+        <div class="spoon">🥄</div>
+
+        <h1>THE HIDDEN SPOON</h1>
+
+        <p>
+            Discover the salt and sugar hiding
+            in everyday food.
+        </p>
+
+        <p class="creator">
+            A Science Project by<br>
+            <strong>Avyaan Attri • Class 5</strong>
+        </p>
+    </div>
+
+    <div class="content">
+
+        <div class="intro">
+            <h2>What is hiding in your food?</h2>
+            <p>
+                Explore, play and learn how small choices
+                can make a difference.
             </p>
-            <p class="creator">
-                A school project by Avyaan Attri • Class 5
+        </div>
+
+        <div class="card salt" onclick="showScreen('salt')">
+            <div class="card-icon">🧂</div>
+            <h3>Discover Salt</h3>
+            <p>
+                Learn about sodium, salt and why
+                reading labels matters.
             </p>
-        </header>
-
-        <div class="content">
-
-            <div class="card salt" onclick="showScreen('salt')">
-                <div class="card-icon">🧂</div>
-                <h2>Discover Salt</h2>
-                <p>How much salt do we really need?</p>
-            </div>
-
-            <div class="card sugar" onclick="showScreen('sugar')">
-                <div class="card-icon">🍭</div>
-                <h2>Discover Sugar</h2>
-                <p>Where is sugar hiding in our food?</p>
-            </div>
-
-            <div class="card game" onclick="showScreen('game')">
-                <div class="card-icon">🔍</div>
-                <h2>Guess the Amount</h2>
-                <p>Can you guess how much sugar is hiding?</p>
-            </div>
-
-            <div class="card quiz" onclick="showScreen('quiz')">
-                <div class="card-icon">🏆</div>
-                <h2>Take the Quiz</h2>
-                <p>Test what you have learned.</p>
-            </div>
-
         </div>
 
-        <footer>
-            Learn • Think • Choose
-        </footer>
-
-    </div>
-
-
-    <!-- SALT -->
-    <div id="salt" class="screen">
-
-        <div class="content">
-
-            <button class="back" onclick="showScreen('home')">
-                ← Back to Home
-            </button>
-
-            <h1>🧂 Discover Salt</h1>
-
-            <div class="fact">
-                <strong>Did you know?</strong><br><br>
-                Our bodies need sodium, but consuming too much sodium
-                over time can be unhealthy.
-            </div>
-
-            <div class="fact">
-                🥔 Processed foods such as chips, instant noodles and
-                packaged foods can contain significant amounts of sodium.
-            </div>
-
-            <div class="fact">
-                🔍 One simple habit is to check the nutrition label
-                before choosing packaged food.
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- SUGAR -->
-    <div id="sugar" class="screen">
-
-        <div class="content">
-
-            <button class="back" onclick="showScreen('home')">
-                ← Back to Home
-            </button>
-
-            <h1>🍭 Discover Sugar</h1>
-
-            <div class="fact">
-                <strong>Where can added sugar hide?</strong><br><br>
-                Soft drinks, sweets, biscuits, desserts and many
-                packaged foods can contain added sugars.
-            </div>
-
-            <div class="fact">
-                🥤 Drinks can be an easy way to consume a lot of
-                sugar without feeling very full.
-            </div>
-
-            <div class="fact">
-                🔍 Reading the nutrition label can help us understand
-                how much sugar a product contains.
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- GAME -->
-    <div id="game" class="screen">
-
-        <div class="content">
-
-            <button class="back" onclick="showScreen('home')">
-                ← Back to Home
-            </button>
-
-            <h1>🔍 Guess the Amount</h1>
-
-            <p class="question">
-                How much added sugar do you think could be in a
-                sugary soft drink?
+        <div class="card sugar" onclick="showScreen('sugar')">
+            <div class="card-icon">🍭</div>
+            <h3>Discover Sugar</h3>
+            <p>
+                Find out where added sugar can
+                hide in everyday foods.
             </p>
-
-            <button class="answer" onclick="gameAnswer(1)">
-                🥄 1 teaspoon
-            </button>
-
-            <button class="answer" onclick="gameAnswer(3)">
-                🥄 3 teaspoons
-            </button>
-
-            <button class="answer" onclick="gameAnswer(6)">
-                🥄 6 teaspoons
-            </button>
-
-            <button class="answer" onclick="gameAnswer(10)">
-                🥄 10 teaspoons
-            </button>
-
-            <div id="result"></div>
-
         </div>
 
-    </div>
-
-
-    <!-- QUIZ -->
-    <div id="quiz" class="screen">
-
-        <div class="content">
-
-            <button class="back" onclick="showScreen('home')">
-                ← Back to Home
-            </button>
-
-            <h1>🏆 Quick Quiz</h1>
-
-            <p class="question">
-                Which is the best way to learn how much sugar or
-                sodium is in packaged food?
+        <div class="card game" onclick="showScreen('game')">
+            <div class="card-icon">🔍</div>
+            <h3>Guess the Amount</h3>
+            <p>
+                Can you guess how much sugar
+                could be hiding in a drink?
             </p>
+        </div>
 
-            <button class="answer" onclick="quizAnswer(false)">
-                A. Guess from the package colour
-            </button>
+        <div class="card quiz" onclick="showScreen('quiz')">
+            <div class="card-icon">🏆</div>
+            <h3>Take the Quiz</h3>
+            <p>
+                Test your knowledge and
+                become a Food Detective.
+            </p>
+        </div>
 
-            <button class="answer" onclick="quizAnswer(true)">
-                B. Read the nutrition label
-            </button>
-
-            <button class="answer" onclick="quizAnswer(false)">
-                C. Choose the biggest packet
-            </button>
-
-            <div id="quizResult"></div>
-
+        <div class="card learn" onclick="showScreen('learn')">
+            <div class="card-icon">💡</div>
+            <h3>What I Learned</h3>
+            <p>
+                Read Avyaan's message about
+                his project.
+            </p>
         </div>
 
     </div>
+
+    <footer>
+        Learn • Think • Choose
+    </footer>
+
+</div>
+
+
+<!-- SALT -->
+<div id="salt" class="screen">
+
+    <div class="content">
+
+        <button class="back" onclick="showScreen('home')">
+            ← Back to Home
+        </button>
+
+        <h1>🧂 Discover Salt</h1>
+
+        <div class="fact">
+            <strong>What is salt?</strong>
+
+            Salt contains sodium. Our bodies need
+            sodium for important functions, but too
+            much sodium in our diet is not a healthy
+            choice.
+        </div>
+
+        <div class="fact">
+            <strong>🔍 Where can it hide?</strong>
+
+            Packaged snacks, instant noodles,
+            sauces, processed foods and some
+            ready-to-eat meals can contain
+            significant amounts of sodium.
+        </div>
+
+        <div class="fact">
+            <strong>🏷️ Become a label detective</strong>
+
+            When buying packaged food, look at
+            the nutrition label and check the
+            sodium content.
+        </div>
+
+        <div class="fact">
+            <strong>💡 Avyaan's tip</strong>
+
+            Don't judge food only by how it looks
+            or tastes. The nutrition label can
+            tell us much more.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SUGAR -->
+<div id="sugar" class="screen">
+
+    <div class="content">
+
+        <button class="back" onclick="showScreen('home')">
+            ← Back to Home
+        </button>
+
+        <h1>🍭 Discover Sugar</h1>
+
+        <div class="fact">
+            <strong>What is added sugar?</strong>
+
+            Some foods naturally contain sugars.
+            Added sugars are sugars added during
+            preparation or processing.
+        </div>
+
+        <div class="fact">
+            <strong>🥤 Watch the drinks</strong>
+
+            Sugary drinks can contain a surprising
+            amount of added sugar and may not
+            make us feel as full as solid food.
+        </div>
+
+        <div class="fact">
+            <strong>🍪 Common places to look</strong>
+
+            Biscuits, sweets, desserts, chocolate,
+            sweetened drinks and many packaged
+            foods may contain added sugars.
+        </div>
+
+        <div class="fact">
+            <strong>🏷️ Read the label</strong>
+
+            Check the serving size and the sugar
+            information on the nutrition label.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- GAME -->
+<div id="game" class="screen">
+
+    <div class="content">
+
+        <button class="back" onclick="showScreen('home')">
+            ← Back to Home
+        </button>
+
+        <h1>🔍 Guess the Amount</h1>
+
+        <p class="question">
+            A sugary soft drink can contain a
+            surprising amount of sugar.
+
+            How much do you think could be
+            in one serving?
+        </p>
+
+        <button class="answer" onclick="gameAnswer(1)">
+            🥄 1 teaspoon
+        </button>
+
+        <button class="answer" onclick="gameAnswer(3)">
+            🥄 3 teaspoons
+        </button>
+
+        <button class="answer" onclick="gameAnswer(6)">
+            🥄 6 teaspoons
+        </button>
+
+        <button class="answer" onclick="gameAnswer(10)">
+            🥄 10 teaspoons
+        </button>
+
+        <div id="gameResult" class="result"></div>
+
+    </div>
+
+</div>
+
+
+<!-- QUIZ -->
+<div id="quiz" class="screen">
+
+    <div class="content">
+
+        <button class="back" onclick="showScreen('home')">
+            ← Back to Home
+        </button>
+
+        <h1>🏆 Food Detective Quiz</h1>
+
+        <div id="questionArea"></div>
+
+        <div id="quizScore" class="score"></div>
+
+    </div>
+
+</div>
+
+
+<!-- WHAT I LEARNED -->
+<div id="learn" class="screen">
+
+    <div class="content">
+
+        <button class="back" onclick="showScreen('home')">
+            ← Back to Home
+        </button>
+
+        <h1>💡 What I Learned</h1>
+
+        <div class="fact">
+            <strong>My discovery</strong>
+
+            Before making this project, I thought
+            salt and sugar were mostly things we
+            added to our food.
+        </div>
+
+        <div class="fact">
+            <strong>Then I discovered...</strong>
+
+            Salt and added sugar can already be
+            present in many everyday packaged
+            foods and drinks.
+        </div>
+
+        <div class="fact">
+            <strong>My message</strong>
+
+            I learned that reading food labels can
+            help us understand what we are eating.
+        </div>
+
+        <div class="fact">
+            <strong>🥄 My big takeaway</strong>
+
+            <span class="highlight">
+                Look. Learn. Make informed choices.
+            </span>
+        </div>
+
+    </div>
+
+</div>
 
 </div>
 
@@ -368,49 +520,179 @@
 
 function showScreen(screenName) {
 
-    document.querySelectorAll('.screen').forEach(function(screen) {
-        screen.classList.remove('active');
+    document.querySelectorAll(".screen").forEach(function(screen) {
+        screen.classList.remove("active");
     });
 
-    document.getElementById(screenName).classList.add('active');
+    document.getElementById(screenName).classList.add("active");
 
     window.scrollTo(0, 0);
+
+    if (screenName === "quiz") {
+        startQuiz();
+    }
 }
 
 
 function gameAnswer(amount) {
 
-    var result = document.getElementById("result");
+    const result = document.getElementById("gameResult");
+
+    result.style.display = "block";
 
     if (amount === 6) {
+
         result.innerHTML =
-        "🎉 Good guess!<br><br>" +
-        "Some sugary drinks can contain around this amount " +
-        "or more of sugar, depending on the product and serving size.<br><br>" +
-        "Always check the label!";
+        "🎉 Great guess!<br><br>" +
+        "Some sugary drinks can contain around " +
+        "this amount or even more, depending on " +
+        "the product and serving size." +
+        "<div class='spoon-row'>🥄 🥄 🥄 🥄 🥄 🥄</div>" +
+        "<strong>Always check the nutrition label!</strong>";
+
     } else {
+
         result.innerHTML =
         "🤔 Good try!<br><br>" +
-        "The actual amount varies by drink and serving size. " +
-        "That's why checking the nutrition label is important.";
+        "The amount of sugar varies between drinks " +
+        "and serving sizes." +
+        "<br><br>" +
+        "That's why the best answer is..." +
+        "<div class='spoon-row'>🔍 CHECK THE LABEL!</div>";
     }
 }
 
 
-function quizAnswer(correct) {
+const questions = [
 
-    var result = document.getElementById("quizResult");
+    {
+        question: "What is one good way to find out how much sugar is in packaged food?",
+        answers: [
+            "Guess from the colour",
+            "Read the nutrition label",
+            "Choose the biggest packet",
+            "Look only at the picture"
+        ],
+        correct: 1
+    },
 
-    if (correct) {
-        result.innerHTML =
-        "🎉 Correct!<br><br>" +
-        "Reading the nutrition label helps us make informed choices.";
-    } else {
-        result.innerHTML =
-        "🙂 Not quite!<br><br>" +
-        "Try reading the nutrition label.";
+    {
+        question: "Which drink can contain a lot of added sugar?",
+        answers: [
+            "Water",
+            "Unsweetened tea",
+            "Sugary soft drink",
+            "Plain water with lemon"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "What should we check when comparing packaged foods?",
+        answers: [
+            "Nutrition information",
+            "Only the package design",
+            "Only the price",
+            "The colour of the packet"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Why is it useful to understand serving size?",
+        answers: [
+            "It tells us how much food the nutrition information refers to",
+            "It tells us the packet colour",
+            "It tells us the brand name",
+            "It tells us the price"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "What is the main idea of The Hidden Spoon?",
+        answers: [
+            "Never eat sugar",
+            "Never eat salt",
+            "Learn what is in our food and make informed choices",
+            "Only eat packaged food"
+        ],
+        correct: 2
     }
 
+];
+
+
+let currentQuestion = 0;
+let score = 0;
+
+
+function startQuiz() {
+
+    currentQuestion = 0;
+    score = 0;
+
+    showQuestion();
+}
+
+
+function showQuestion() {
+
+    const area = document.getElementById("questionArea");
+
+    if (currentQuestion >= questions.length) {
+
+        area.innerHTML =
+        "<div class='fact' style='text-align:center'>" +
+        "<strong>🎉 Quiz Complete!</strong><br><br>" +
+        "You scored <strong>" +
+        score +
+        " / " +
+        questions.length +
+        "</strong><br><br>" +
+        "You are officially a<br>" +
+        "🥄 <strong>FOOD DETECTIVE!</strong>" +
+        "</div>";
+
+        return;
+    }
+
+    const q = questions[currentQuestion];
+
+    let html =
+        "<p class='question'>" +
+        (currentQuestion + 1) +
+        ". " +
+        q.question +
+        "</p>";
+
+    q.answers.forEach(function(answer, index) {
+
+        html +=
+        "<button class='answer' onclick='checkAnswer(" +
+        index +
+        ")'>" +
+        answer +
+        "</button>";
+
+    });
+
+    area.innerHTML = html;
+
+    document.getElementById("quizScore").innerHTML =
+        "Score: " + score;
+}
+
+
+function checkAnswer(answer) {
+
+    if (answer === questions[currentQuestion].correct) {
+        score++;
+    }
+
+    currentQuestion++;
+
+    showQuestion();
 }
 
 </script>
